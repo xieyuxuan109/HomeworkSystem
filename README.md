@@ -93,5 +93,5 @@ homework-system/
     JWT_SECRET="your_32_byte_secret_key_here____" 原本是要自己设置，但是由于不是开发环境，不太方便所以是硬编码无需配置
     DASHSCOPE_API_KEY="your_ai_provider_api_key"  # 用于 AI 初评 必须是qwen阿里云的key
     ```
-## API文档，由postman直接导出，并且由自动化测试代码
+## API文档，由postman直接导出，并且由自动化测试代码，所有由两个文件，一个是测试API，一个是环境变量
 ["Postman API文件链接"](https://github.com/xieyuxuan109/HomeworkSystem/tree/main/api "Postman API文件")
