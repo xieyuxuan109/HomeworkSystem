@@ -2,11 +2,13 @@ package pkg
 
 import (
 	"errors"
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/xieyuxuan109/homeworksystem/configs"
 )
+
+var JWT_SECRET string = os.Getenv("JWT_SECRET")
 
 // 自定义 Claims，明确指定类型
 type Claims struct {
@@ -34,7 +36,7 @@ func GenerateTokens(userID uint, username string, role string, department string
 	}
 
 	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, accessClaims)
-	accessTokenStr, err := accessToken.SignedString([]byte(configs.JWT_SECRET))
+	accessTokenStr, err := accessToken.SignedString([]byte(JWT_SECRET))
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +53,7 @@ func GenerateTokens(userID uint, username string, role string, department string
 		},
 	}
 	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshClaims)
-	refreshTokenStr, err := refreshToken.SignedString([]byte(configs.JWT_SECRET))
+	refreshTokenStr, err := refreshToken.SignedString([]byte(JWT_SECRET))
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +66,7 @@ func GenerateTokens(userID uint, username string, role string, department string
 // 通用验证函数
 func VerifyToken(tokenStr, expectedType string) (*Claims, error) {
 	token, err := jwt.ParseWithClaims(tokenStr, &Claims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(configs.JWT_SECRET), nil
+		return []byte(JWT_SECRET), nil
 	})
 
 	if err != nil {
