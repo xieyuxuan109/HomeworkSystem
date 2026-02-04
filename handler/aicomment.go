@@ -15,7 +15,7 @@ import (
 )
 
 func buildPrompt(hw *model.Homework, sb *model.Submission) string {
-	return fmt.Sprintf(`你是一位经验丰富的%s老师。请根据以下信息对学生的作业进行评价,并生成预估得分：
+	return fmt.Sprintf(`你是一位经验丰富的%s老师。请根据以下信息对学生的作业进行评价,并一定要生成预估得分：
 作业标题：%s
 作业内容：%s
 学生提交内容：%s

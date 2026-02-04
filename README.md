@@ -92,15 +92,35 @@ homework-system/
 2. **运行**
   ```
   cd HomeworkSystem/docker
-  docker load -i homeworksystem.tar//自己制作的镜像,但由于镜像过大，需要是可以私我要镜像
+  docker load -i homeworksystem.tar//自己制作的镜像,但由于镜像过大，需要的时候可以私我要镜像，也可以根据dockerfile自行构建
   cp .env.example .env
   docker-compose up -d
   docker-compose ps
   ```
+  ```
+  运行成功图片(刚开始需要等mysql容器初始化完成第二个容器才会启动)
+  ```
+  ![运行成功图片](/img/05.png)
 3.**测试**
   ```
   导入postman测试脚本和环境变量
+  测试ai功能时候需修改.env文件里面的DASHSCOPE_API_KEY，仅支持千问
   ```
+  ```
+  调试成功图片
+  ```
+  ![调试成功图片](/img/01.png)
+  ```
+  调试后docker logs日志
+  ```
+  ![调试后docker logs日志](/img/02.png)
+  
+
 
 ## API文档，由postman直接导出，并且由自动化测试代码，所有由两个文件，一个是测试API，一个是环境变量
 ["Postman API文件链接"](https://github.com/xieyuxuan109/HomeworkSystem/tree/main/api "Postman API文件")
+  ```
+  导入两个文档后效果
+  ```
+  ![导入两个文档后效果](/img/03.png)
+  ![导入两个文档后效果](/img/04.png)
