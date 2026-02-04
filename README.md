@@ -57,7 +57,7 @@
 - **认证机制**：JWT（Access Token + Refresh Token）
 - **密码安全**：bcrypt 加盐哈希
 - **AI 集成**：通过 HTTP 调用第三方大模型 API（如 DeepSeek、Qwen等）
-- **部署方式**：Docker 容器化（含 `docker-compose.yml`）
+- **部署方式**：Docker 容器化（含 `docker-compose.yaml`）或本地部署
 ---
 
 ## 项目结构说明
@@ -68,6 +68,7 @@ homework-system/
 │ └── main.go # 程序入口
 ├── configs/ # 配置文件（数据库、JWT、AI等）
 ├── dao/ # 数据访问层（User, Homework, Submission）
+├── docker/ #docker部署相关文件
 ├── handler/ # HTTP 请求处理器
 ├── middleware/ # 中间件（JWT 认证、权限校验）
 ├── models/ # GORM 模型定义
@@ -84,14 +85,22 @@ homework-system/
 ---
 ## 本地运行指南
 
-1. **安装依赖**
-   ```bash
-   go mod tidy
-2. **配置环境变量**
-    ```
-    设置环境变量
-    JWT_SECRET="your_32_byte_secret_key_here____" 原本是要自己设置，但是由于不是开发环境，不太方便所以是硬编码无需配置
-    DASHSCOPE_API_KEY="your_ai_provider_api_key"  # 用于 AI 初评 必须是qwen阿里云的key
-    ```
+1. **下载**
+   ```
+   git clone https://github.com/xieyuxuan109/HomeworkSystem.git
+   ```
+2. **运行**
+  ```
+  cd docker
+  docker load -i homeworksystem.tar//自己制作的镜像,但由于镜像过大，需要是可以私我要镜像
+  cp .env.example .env
+  docker-compose up -d
+  docker-compose ps
+  ```
+3.**测试**
+  ```
+  导入postman测试脚本和环境变量
+  ```
+
 ## API文档，由postman直接导出，并且由自动化测试代码，所有由两个文件，一个是测试API，一个是环境变量
 ["Postman API文件链接"](https://github.com/xieyuxuan109/HomeworkSystem/tree/main/api "Postman API文件")

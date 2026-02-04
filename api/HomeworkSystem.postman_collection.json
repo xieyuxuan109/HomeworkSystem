@@ -1,13 +1,13 @@
 {
   "info": {
-    "_postman_id": "0a111243-fab1-4f98-944f-7b54f67011cd",
+    "_postman_id": "221d79ba-f3eb-4e9e-b1a7-9ef389dad1a5",
     "name": "HomeworkSystem",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "51179495"
   },
   "item": [
     {
-      "name": "Register",
+      "name": "RegisterStudent",
       "event": [
         {
           "listen": "prerequest",
@@ -93,10 +93,13 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/user/register",
+          "raw": "http://192.168.1.125:8080/user/register",
           "protocol": "http",
           "host": [
-            "localhost"
+            "192",
+            "168",
+            "1",
+            "125"
           ],
           "port": "8080",
           "path": [
@@ -242,7 +245,16 @@
               "pm.test(\"Status code is 200\",function(){\r",
               "    pm.response.to.have.status(200);\r",
               "    console.log()\r",
-              "})"
+              "})\r",
+              "\r",
+              "pm.test(\"Response structure\",function(){\r",
+              "    pm.expect(pm.response.text()).to.include(\"id\")\r",
+              "})\r",
+              "\r",
+              "var jsonData=pm.response.json();\r",
+              "console.log(jsonData)\r",
+              "pm.environment.set(\"HOMEWORK_ID\",jsonData.data.id)\r",
+              ""
             ],
             "type": "text/javascript",
             "packages": {},
@@ -264,7 +276,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"title\":\"hahahahahhahahahah\",\r\n    \"description\": \"本周作业内容https://xxxxxx.com/xxxxxx\",\r\n    \"department\":\"backend\",\r\n    \"deadline\": \"2026-01-31T23:59:59Z\",\r\n    \"allow_late\":true\r\n}",
+          "raw": "{\r\n    \"title\":\"第一周作业内容\",\r\n    \"description\": \"本周作业内容学习http请求\",\r\n    \"department\":\"backend\",\r\n    \"deadline\": \"2026-01-31T23:59:59Z\",\r\n    \"allow_late\":true\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -272,63 +284,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/homework",
+          "raw": "http://{{HOST}}:8080/homework",
           "protocol": "http",
           "host": [
-            "localhost"
-          ],
-          "port": "8080",
-          "path": [
-            "homework"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "PostHomework Copy",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test(\"Status code is 200\",function(){\r",
-              "    pm.response.to.have.status(200);\r",
-              "    console.log()\r",
-              "})"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "noauth"
-        },
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{ACCESS_TOKEN}}",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"title\":\"xxxxxxx谢园xxxxxxxxxxxx\",\r\n    \"description\": \"本周作业内容\",\r\n    \"department\":\"backend\",\r\n    \"deadline\": \"2026-01-31T23:59:59Z\",\r\n    \"allow_late\":true\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:8080/homework",
-          "protocol": "http",
-          "host": [
-            "localhost"
+            "{{HOST}}"
           ],
           "port": "8080",
           "path": [
@@ -390,7 +349,7 @@
       "response": []
     },
     {
-      "name": "Login",
+      "name": "LoginStudent",
       "event": [
         {
           "listen": "prerequest",
@@ -644,13 +603,13 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"homework_id\":12,\r\n    \"content\": \"我正在学习API请求\",\r\n    \"file_url\":\"https//baidu.com\"\r\n}"
+          "raw": "{\r\n    \"homework_id\":{{HOMEWORKID}},\r\n    \"content\": \"我正在学习API请求\",\r\n    \"file_url\":\"https//baidu.com\"\r\n}"
         },
         "url": {
-          "raw": "http://localhost:8080/submission",
+          "raw": "http://{{HOST}}:8080/submission",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{HOST}}"
           ],
           "port": "8080",
           "path": [
@@ -710,7 +669,7 @@
       "response": []
     },
     {
-      "name": "LoginTeacher Copy",
+      "name": "LoginTeacher",
       "event": [
         {
           "listen": "prerequest",
@@ -770,58 +729,6 @@
           "path": [
             "user",
             "login"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Refresh Copy",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test(\"Status code is 200\",function(){\r",
-              "    pm.response.to.have.status(200);\r",
-              "    console.log()\r",
-              "})"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{REFRESH_TOKEN}}",
-            "type": "text",
-            "disabled": true
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"refresh_token\":\"{{REFRESH_TOKEN}}\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:8080/user/refresh",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8080",
-          "path": [
-            "user",
-            "refresh"
           ]
         }
       },
@@ -954,38 +861,6 @@
             "124"
           ],
           "port": "11434"
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "localaiReview",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{   \"model\": \"qwen3:1.7b\",   \"prompt\": \"帮我生成一段评价电子信息专业10字左右\",   \"stream\": false }",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://192.168.1.125:11434/api/generate",
-          "protocol": "http",
-          "host": [
-            "192",
-            "168",
-            "1",
-            "125"
-          ],
-          "port": "11434",
-          "path": [
-            "api",
-            "generate"
-          ]
         }
       },
       "response": []
@@ -1152,7 +1027,7 @@
       "response": []
     },
     {
-      "name": "DeleteAccount",
+      "name": "DeleteTeacherAccount",
       "event": [
         {
           "listen": "test",
@@ -1198,7 +1073,7 @@
       "response": []
     },
     {
-      "name": "Login Copy",
+      "name": "LoginStudent",
       "event": [
         {
           "listen": "prerequest",
@@ -1264,7 +1139,7 @@
       "response": []
     },
     {
-      "name": "DeleteAccount Copy",
+      "name": "DeleteStudentAccount",
       "event": [
         {
           "listen": "test",
@@ -1295,42 +1170,15 @@
           "raw": "{\r\n    \"password\":\"123456\"\r\n}"
         },
         "url": {
-          "raw": "http://localhost:8080/user/account",
+          "raw": "http://{{HOST}}:8080/user/account",
           "protocol": "http",
           "host": [
-            "localhost"
+            "{{HOST}}"
           ],
           "port": "8080",
           "path": [
             "user",
             "account"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "New Request",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{ACCESS_TOKEN}}",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:8080/submission/15/localaiReview",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "8080",
-          "path": [
-            "submission",
-            "15",
-            "localaiReview"
           ]
         }
       },
