@@ -86,12 +86,12 @@ homework-system/
 ## 本地运行指南
 
 1. **下载**
-   ```
+  ```
    git clone https://github.com/xieyuxuan109/HomeworkSystem.git
-   ```
+  ```
 2. **运行**
   ```
-  cd docker
+  cd HomeworkSystem/docker
   docker load -i homeworksystem.tar//自己制作的镜像,但由于镜像过大，需要是可以私我要镜像
   cp .env.example .env
   docker-compose up -d
