@@ -1,14 +1,17 @@
-# 第一阶段：编译（使用官方 Go 镜像）
-FROM golang:1.25
+# 第一阶段：构建阶段
+FROM golang:1.25 AS builder
+ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GOPROXY=https://goproxy.cn,direct
+WORKDIR /go
+RUN git clone https://github.com/xieyuxuan109/HomeworkSystem.git \
+    && cd HomeworkSystem/cmd/ \
+    && go build -o homework main.go 
 
-#时区
-ENV TZ=Asia/Shanghai
-
-# 复制（利用缓存加速）
-COPY ./homeworksystem /go
-
-# 暴露端口（文档化用途）
+# 第二阶段：运行阶段（极简镜像）
+FROM alpine
+RUN apk add --no-cache ca-certificates tzdata \
+&& cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+&& echo "Asia/Shanghai" > /etc/timezone
+WORKDIR /root/
+COPY --from=builder /go/HomeworkSystem/cmd/homework ./
 EXPOSE 8080
-
-# 启动命令
-CMD ["./homeworksystem"]
+CMD ["./homework"]
