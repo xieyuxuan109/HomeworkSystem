@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "221d79ba-f3eb-4e9e-b1a7-9ef389dad1a5",
+    "_postman_id": "47ec7e8d-0ad8-4375-b268-ebe23c4fb4f0",
     "name": "HomeworkSystem",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "51179495"
@@ -40,7 +40,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\":{{STUDENT}},\r\n    \"password\":{{PASSWORD_STUDENT}},\r\n    \"nickname\":{{STUDENT}},\r\n    \"role\": \"student\",\r\n    \"department\":\"backend\"\r\n}",
+          "raw": "{\r\n    \"username\":\"{{STUDENT}}\",\r\n    \"password\":\"{{PASSWORD_STUDENT}}\",\r\n    \"nickname\":\"{{STUDENT}}\",\r\n    \"role\": \"student\",\r\n    \"department\":\"backend\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -85,7 +85,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\":{{TEACHER}},\r\n    \"password\":{{PASSWORD_TEACHER}},\r\n    \"nickname\":{{TEACHER}},\r\n    \"role\": \"admin\",\r\n    \"department\":\"backend\"\r\n}",
+          "raw": "{\r\n    \"username\":\"{{TEACHER}}\",\r\n    \"password\":\"{{PASSWORD_TEACHER}}\",\r\n    \"nickname\":\"{{TEACHER}}\",\r\n    \"role\": \"admin\",\r\n    \"department\":\"backend\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -151,7 +151,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\":{{TEACHER}},\r\n    \"password\":{{PASSWORD_TEACHER}}\r\n}",
+          "raw": "{\r\n    \"username\":\"{{TEACHER}}\",\r\n    \"password\":\"{{PASSWORD_TEACHER}}\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -378,7 +378,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\":{{STUDENT}},\r\n    \"password\":{{PASSWORD_STUDENT}}\r\n}",
+          "raw": "{\r\n    \"username\":\"{{STUDENT}}\",\r\n    \"password\":\"{{PASSWORD_STUDENT}}\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -684,7 +684,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\":{{TEACHER}},\r\n    \"password\":{{PASSWORD_TEACHER}}\r\n}",
+          "raw": "{\r\n    \"username\":\"{{TEACHER}}\",\r\n    \"password\":\"{{PASSWORD_TEACHER}}\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -796,37 +796,6 @@
             "submission",
             "{{SUBMISSION_ID}}",
             "review"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "aiReview",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{ACCESS_TOKEN}}",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"homework_id\":{{HOMEWORK_ID}},\r\n    \"submission_id\":{{SUBMISSION_ID}}\r\n}"
-        },
-        "url": {
-          "raw": "http://{{HOST}}:8080/submission/{{SUBMISSION_ID}}/aiReview",
-          "protocol": "http",
-          "host": [
-            "{{HOST}}"
-          ],
-          "port": "8080",
-          "path": [
-            "submission",
-            "{{SUBMISSION_ID}}",
-            "aiReview"
           ]
         }
       },
@@ -1006,7 +975,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"password\":{{PASSWORD_TEACHER}}\r\n}"
+          "raw": "{\r\n    \"password\":\"{{PASSWORD_TEACHER}}\"\r\n}"
         },
         "url": {
           "raw": "http://{{HOST}}:8080/user/account",
@@ -1067,7 +1036,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"username\":{{STUDENT}},\r\n    \"password\":{{PASSWORD_STUDENT}}\r\n}",
+          "raw": "{\r\n    \"username\":\"{{STUDENT}}\",\r\n    \"password\":\"{{PASSWORD_STUDENT}}\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -1118,7 +1087,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"password\":{{PASSWORD_STUDENT}}\r\n}"
+          "raw": "{\r\n    \"password\":\"{{PASSWORD_STUDENT}}\"\r\n}"
         },
         "url": {
           "raw": "http://{{HOST}}:8080/user/account",

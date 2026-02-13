@@ -22,7 +22,7 @@ services:
       retries: 10
     #Go 应用服务
   go-app:
-    image: xieyuxuan/homeworksystem:v1.0.0
+    image: 192.168.1.221:81/xieyuxuan/homeworksystem:v1.0.0
     container_name: homework-go-app
     restart: always
     ports:

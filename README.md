@@ -92,10 +92,10 @@ homework-system/
 2. **运行**
   ```
   cd HomeworkSystem/docker
-  docker load -i homeworksystem.tar//自己制作的镜像,但由于镜像过大，需要的时候可以私我要镜像，也可以根据dockerfile自行构建
+  docker build -t 192.168.1.221:81/xieyuxuan/homeworksystem:v1.0.0 .
   cp .env.example .env
-  docker-compose up -d
-  docker-compose ps
+  docker compose up -d
+  docker compose ps
   ```
   ```
   运行成功图片(刚开始需要等mysql容器初始化完成第二个容器才会启动)
